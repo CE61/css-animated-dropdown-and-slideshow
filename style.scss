@@ -1,0 +1,212 @@
+body{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 2%;
+    background: url(images/background.jpg);
+    -webkit-background-size: cover;
+    background-size: cover;
+    background-position: center center;
+    min-height: 100vh;
+    background-repeat: no-repeat;
+    color: whitesmoke;
+}
+.navbar{
+    position: absolute;
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 50px;
+    height: 50px;
+    left: 24px;
+    background-color: darkslategray;
+    align-items: center;
+    background-image: url(images/menu.svg);
+    background-size: 75%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    .menu{
+        display: grid;
+        grid-template-columns: 80px;
+        grid-template-rows: 50px 50px 50px 50px;
+        gap: 4px;
+        list-style: none;
+        visibility: hidden;
+        opacity: 0;
+        position: absolute;
+        top: 100%;
+        left: -2.5em;
+        transform: translateY(-3em);
+        z-index: -1;
+        transition: all 0.3s ease 0s, visibility 0s linear 0.3s, z-index 0s linear 0.01s;
+    }
+    .menu li{
+        display: flex;
+        background-color: darkslategray;
+        justify-content: center;
+        align-items: center;
+        &:hover{
+            background-color: lightslategray;
+        }
+        &:active{
+            background-color: rgb(33, 33, 33);
+            cursor: default;
+        }
+    }
+    &:focus,
+    &:focus-within,
+    &:hover{
+        cursor: pointer;
+    }
+    &:active{
+        background-color: rgb(33, 33, 33);
+        cursor: default;
+    }
+}
+.navbar.clicked .menu{
+    visibility: visible;
+    opacity: 1;
+    z-index: 1;
+    transform: translateY(-0.5em);
+    transition-delay: 0s, 0s, 0.3s;
+}
+.slideshow-container{
+    position: relative;
+    height: 350px;
+    width: 800px;
+    overflow: hidden;
+    align-self: center;
+    .slide-buttons{
+        height: 16px;
+        width: auto;
+        position: absolute;
+        bottom: 16px;
+        left: calc(50% - 40px);
+        z-index: 2;
+        button{
+            border-style: none;
+            background-color: rgba($color: #000000, $alpha: 0);
+            background-image: url(images/dot.svg);
+            background-position: center;
+            background-size: 50%;
+            background-repeat: no-repeat;
+            opacity: 0.5;
+            height: 24px;
+            width: 24px;
+            &:hover{
+                opacity: 0.8;
+                cursor: pointer;
+            }
+            &:active{
+                opacity: 1;
+                cursor: default;
+            }
+        }
+    }
+    .slideshow{
+        height: 100%;
+        width: 800px;
+        background-image: url(images/greenfrog.png);
+        background-size: 800px 350px;
+        background-repeat:repeat-x;
+    }
+    .slide-from-left{
+        position: absolute;
+        height: 100%;
+        width: 800px;
+        left: -800px;
+        top: 0px;
+        background-color: red;
+    }
+    .slide-from-right{
+        position: absolute;
+        height: 100%;
+        width: 800px;
+        left: 800px;
+        top: 0px;
+        background-color: blue;
+    }
+}
+.slide-description{
+    height: 150px;
+    width: 800px;
+    background-color: darkslategray;
+    p{
+        text-align: center;
+        padding-left: 24px;
+        padding-right: 24px;
+        padding-top: 24px;
+        padding-bottom: 24px;
+    }
+}
+.slideshow.right{
+    animation: left 0.5s linear;
+}
+.slide-from-right.move{
+    animation: left 0.5s linear;
+}
+@keyframes right {
+    0%{
+        transform: translate3d(0, 0, 0);
+    }
+    100%{
+        transform: translate3d(800px, 0, 0);
+    }
+}
+.slide-from-left.move{
+    animation: right 0.5s linear;
+}
+.slideshow.left{
+    animation: right 0.5s linear;
+}
+@keyframes left {
+    0%{
+        transform: translate3d(0, 0, 0);
+    }
+    100%{
+        transform: translate3d(-800px, 0, 0);
+    }
+}
+#left-arrow{
+    position: absolute;
+    border-style: none;
+    background-color: rgba($color: #000000, $alpha: 0);
+    background-image: url(images/leftarrow.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 30px;
+    width: 40px;
+    left: 12px;
+    top: 75%;
+    opacity: 0.5;
+    z-index: 2;
+    &:hover{
+        opacity: 0.8;
+        cursor: pointer;
+    }
+    &:active{
+        opacity: 1;
+        cursor: default;
+    }
+}
+#right-arrow{
+    position: absolute;
+    right: 12px;
+    top: 75%;
+    border-style: none;
+    background-color: rgba($color: #000000, $alpha: 0);
+    background-image: url(images/rightarrow.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 30px;
+    width: 40px;
+    opacity: 0.5;
+    z-index: 2;
+    &:hover{
+        opacity: 0.8;
+        cursor: pointer;
+    }
+    &:active{
+        opacity: 1;
+        cursor: default;
+    }
+}
